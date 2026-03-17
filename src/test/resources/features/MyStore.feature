@@ -1,5 +1,6 @@
 Feature: Product - Store
 
+  @MSLogin
   Scenario Outline: Validacion del precio de un producto
 
     Given estoy en la pagina de la tienda

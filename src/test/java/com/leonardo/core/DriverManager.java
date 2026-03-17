@@ -27,10 +27,10 @@ public class DriverManager {
 
         if (os.contains("win")) {
             // Windows OS
-            System.setProperty("webdriver.chrome.driver", "PATH");
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
         } else if (os.contains("mac")) {
             // Mac OS
-            System.setProperty("webdriver.chrome.driver", "PATH");
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
         } else {
             throw new IllegalStateException("Unsupported operating system: " + os);
         }
