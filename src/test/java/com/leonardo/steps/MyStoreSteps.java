@@ -1,16 +1,20 @@
 package com.leonardo.steps;
 
+import com.leonardo.page.MyStorePage;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static com.leonardo.core.DriverManager.getDriver;
+import static com.leonardo.core.DriverManager.*;
 
 public class MyStoreSteps {
     // Declaramos WebDriver y WebDriverWait
     private WebDriver driver;
     private WebDriverWait wait;
+    private double precioUnidad = 0.0;
 
     public void estoyEnLaPaginaDeLaTienda() {
         driver = getDriver();
@@ -18,10 +22,25 @@ public class MyStoreSteps {
 
         // Agregamos una espera explícita para que la pagina cargue correctamente
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        screenShot();
         System.out.println(">> PAGINA PRINCIPAL CARGADA " + driver.getTitle());
     }
 
     public void meLogueoConMiUsuarioYClave(String usuario, String clave) {
+        wait.until(ExpectedConditions.elementToBeClickable(MyStorePage.enlaceLogin)).click();
+        esperaImplicita();
+        wait.until(ExpectedConditions.urlContains("iniciar-sesion"));
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.txtUsuaario)).sendKeys(usuario);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.txtPass)).sendKeys(clave);
+
+        // Validamos si el nombre de usuario aparece en la cabecera:
+//        Assertions.assertEquals(
+//                "Leonardo Rivadeneira Romero",
+//                ExpectedConditions.visibilityOfElementLocated(MyStorePage.usuarioCabecera)
+//        );
+        screenShot();
+
         System.out.println(">> LOGIN");
     }
 

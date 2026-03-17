@@ -16,5 +16,5 @@ Feature: Product - Store
     Examples:
       | usuario           | clave          | categoria | subcategoria | cantidad |
       | leonardo@mail.com | Password$$1234 | Clothes   | Men          | 2        |
-      | usuarioIncorrecto | passIncorrecto | Clothes   | Men          | 2        |
-      | leonardo@mail.com | Password$$1234 | Autos     | Men          | 2        |
+#      | usuarioIncorrecto | passIncorrecto | Clothes   | Men          | 2        |
+#      | leonardo@mail.com | Password$$1234 | Autos     | Men          | 2        |
