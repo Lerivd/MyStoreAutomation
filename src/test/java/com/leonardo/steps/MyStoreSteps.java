@@ -14,7 +14,6 @@ public class MyStoreSteps {
     // Declaramos WebDriver y WebDriverWait
     private WebDriver driver;
     private WebDriverWait wait;
-    private double precioUnidad = 0.0;
 
     public void estoyEnLaPaginaDeLaTienda() {
         driver = getDriver();
@@ -23,7 +22,7 @@ public class MyStoreSteps {
         // Agregamos una espera explícita para que la pagina cargue correctamente
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         screenShot();
-        System.out.println(">> PAGINA PRINCIPAL CARGADA " + driver.getTitle());
+        System.out.println(">> PAGINA PRINCIPAL CARGADA " + driver.getTitle().toUpperCase());
     }
 
     public void meLogueoConMiUsuarioYClave(String usuario, String clave) {
@@ -36,10 +35,10 @@ public class MyStoreSteps {
         wait.until(ExpectedConditions.elementToBeClickable(MyStorePage.btnIniciarSesion)).click();
 
         // Validamos si el nombre de usuario aparece en la cabecera:
-//        Assertions.assertEquals(
-//                "Leonardo Rivadeneira Romero",
-//                ExpectedConditions.visibilityOfElementLocated(MyStorePage.usuarioCabecera)
-//        );
+        Assertions.assertFalse(
+                wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.usuarioCabecera)).getText().isEmpty(),
+                "El nombre de usuario no aparece en la cabecera"
+        );
         screenShot();
 
         System.out.println(">> LOGIN");
@@ -53,7 +52,7 @@ public class MyStoreSteps {
         esperaImplicita();
         screenShot();
 
-        System.out.println(">> NAVEGACION POR CATEGORIA " + categoria + " Y SUBCATEGORIA " + subcategoria);
+        System.out.println(">> NAVEGACION POR CATEGORIA " + categoria.toUpperCase() + " Y SUBCATEGORIA " + subcategoria.toUpperCase());
     }
 
     public void agregoCantidadUnidadesDelPrimerProductoAlCarrito(int cantidad) {
@@ -68,28 +67,32 @@ public class MyStoreSteps {
     }
 
     public void validoEnElPopupLaConfirmacionDelProductoAgregado() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.msgConfirmacion));
 
-//        Assertions.assertEquals("Hummingbird", ExpectedConditions.visibilityOfElementLocated(MyStorePage.nombreProducto));
-        System.out.println(">> VALIDAMOS EL DETALLE");
+        Assertions.assertTrue(
+                wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.msgConfirmacion)).getText().contains("Producto añadido correctamente"),
+                "El mensaje de confirmacion no se muestra"
+        );
+        screenShot();
+        System.out.println(">> VALIDAMOS LA CONFIRMACION DEL PRODUCTO AGREGADO");
     }
 
     public void validoEnElPopupQueElMontoTotalSeaCalculadoCorrectamente() {
-//        int cantidad = Integer.parseInt(wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.cantidadPopup)).getText());
-//        precioUnidad = Double.parseDouble(wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.precioUnidadPopup)).getText().replace("S/ ","").replace(",", ".").trim());
+        int cantidadPopup = Integer.parseInt(wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.cantidadPopup)).getText());
+        double precioUnidadPopup = Double.parseDouble(wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.precioUnidadPopup)).getText().replace("PEN", "").replace(",", "").trim());
+        double totalPopup = cantidadPopup * precioUnidadPopup;
 
-//        System.out.println(cantidad);
-//        System.out.println(precioUnidad);
-//        Assertions.assertEquals(cantidad*precioUnidad,
-//                Double.parseDouble(wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.precioTotalPopup)).getText().replace("S/ ", "").trim())
-//        );
+        // Validamos que el resultado sea el mismo
+        Assertions.assertEquals(
+                totalPopup,
+                Double.parseDouble(wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.precioTotalPopup)).getText().replace("PEN", "").replace(",", "").trim()),
+                "El monto total que se muestra en el popup es incorrecto"
+        );
+        screenShot();
         System.out.println(">> VALIDAMOS MONTO TOTAL");
     }
 
     public void finalizoLaCompra() {
         wait.until(ExpectedConditions.elementToBeClickable(MyStorePage.btnFinalizarPopup)).click();
-
-
         System.out.println(">> FINALIZAMOS COMPRA");
     }
 
@@ -102,7 +105,16 @@ public class MyStoreSteps {
     }
 
     public void vuelvoAValidarElCalculoDePreciosEnElCarrito() {
+        int cantidadCarrito = Integer.parseInt(wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.cantidadCarrito)).getText().replace("artículos", "").trim());
+        double precioCarrito = Double.parseDouble(wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.precioUnidadCarrito)).getText().replace("PEN", "").replace(",", "").trim());
+        double totalCarrito = cantidadCarrito * precioCarrito;
 
+        // Validamos que el resultado sea el mismo
+        Assertions.assertEquals(
+                totalCarrito,
+                Double.parseDouble(wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.precioTotalCarrito)).getText().replace("PEN", "").replace(",", "").trim()),
+                "El monto total que se muestra en el carrito es incorrecto"
+        );
         System.out.println(">> VALIDAMOS EL CALCULO DE PRECIOS EN EL CARRITO");
     }
 }

@@ -20,17 +20,17 @@ public class MyStorePage {
     public static By btnAgregarAlCarrito = By.cssSelector("#add-to-cart-or-refresh > div.product-add-to-cart.js-product-add-to-cart > div > div.add > button");
 
     // Localizadores en el popup
-    public static By msgConfirmacion = By.id("myModalLabel");
+    public static By msgConfirmacion = By.xpath("//h4[@id='myModalLabel']");
     public static By cantidadPopup = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[1]/div/div[2]/span[3]/strong");
-    public static By precioUnidadPopup = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[1]/div/div[2]/p");
-    public static By precioTotalPopup = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[2]/div/p[4]/span[2]");
+    public static By precioUnidadPopup = By.xpath("//p[@class='product-price']");
+    public static By precioTotalPopup = By.xpath("//p[@class='product-total']/span[@class='value']");
     public static By btnFinalizarPopup = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[2]/div/div/a");
 
     // Localizadores en la pagina del carrito
     public static By tituloCarrito = By.xpath("/html/head/title");
     public static By nombreProducto = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[1]/div/div[2]/h6");
-    public static By cantidadCarrito = By.xpath("//*[@id='main']/div/div[1]/div/div[2]/ul/li/div/div[3]/div/div[2]/div/div[1]/div/input");
-    public static By precioUnidad = By.xpath("//*[@id='main']/div/div[1]/div/div[2]/ul/li/div/div[2]/div[2]/div[2]/span");
-    public static By precioTotalCarrito = By.id("//*[@id='main']/div/div[2]/div[1]/div[1]/div[2]/div[2]/span[2]");
+    public static By cantidadCarrito = By.xpath("//div[@id='cart-subtotal-products']/span[@class='label js-subtotal']");
+    public static By precioUnidadCarrito = By.xpath("//*[@id='main']/div/div[1]/div/div[2]/ul/li/div/div[2]/div[2]/div[2]/span");
+    public static By precioTotalCarrito = By.cssSelector("#main > div > div.cart-grid-right.col-lg-4 > div.card.cart-summary > div.cart-detailed-totals.js-cart-detailed-totals > div.card-block.cart-summary-totals.js-cart-summary-totals > div.cart-summary-line.cart-total > span.value");
 
 }
