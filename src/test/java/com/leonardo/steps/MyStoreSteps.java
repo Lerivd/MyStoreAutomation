@@ -45,9 +45,9 @@ public class MyStoreSteps {
     }
 
     public void navegoALaCategoriaYSubcategoria(String categoria, String subcategoria) {
-        wait.until(ExpectedConditions.elementToBeClickable(MyStorePage.menuCategoria)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(MyStorePage.getMenuCategoria(categoria))).click();
         wait.until(ExpectedConditions.urlContains("3-clothes"));
-        wait.until(ExpectedConditions.elementToBeClickable(MyStorePage.menuSubCategoria)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(MyStorePage.getMenuSubCategoria(subcategoria))).click();
         wait.until(ExpectedConditions.urlContains("4-men"));
         esperaImplicita();
         screenShot();
@@ -108,7 +108,6 @@ public class MyStoreSteps {
         int cantidadCarrito = Integer.parseInt(wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.cantidadCarrito)).getText().replace("artículos", "").trim());
         double precioCarrito = Double.parseDouble(wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.precioUnidadCarrito)).getText().replace("PEN", "").replace(",", "").trim());
         double totalCarrito = cantidadCarrito * precioCarrito;
-
         // Validamos que el resultado sea el mismo
         Assertions.assertEquals(
                 totalCarrito,
