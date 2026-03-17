@@ -56,7 +56,14 @@ public class MyStoreSteps {
     }
 
     public void agregoCantidadUnidadesDelPrimerProductoAlCarrito(int cantidad) {
+        wait.until(ExpectedConditions.elementToBeClickable(MyStorePage.enlaceproducto)).click();
+        esperaImplicita();
+        wait.until(ExpectedConditions.elementToBeClickable(MyStorePage.aumentarUnidad)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(MyStorePage.btnAgregarAlCarrito)).click();
+        esperaImplicita();
+        screenShot();
         System.out.println(">> SE AGREGO " + cantidad + " UNIDADES");
+
     }
 
     public void validoEnElPopupLaConfirmacionDelProductoAgregado() {
