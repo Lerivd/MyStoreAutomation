@@ -68,23 +68,41 @@ public class MyStoreSteps {
     }
 
     public void validoEnElPopupLaConfirmacionDelProductoAgregado() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.msgConfirmacion));
 
+//        Assertions.assertEquals("Hummingbird", ExpectedConditions.visibilityOfElementLocated(MyStorePage.nombreProducto));
         System.out.println(">> VALIDAMOS EL DETALLE");
     }
 
     public void validoEnElPopupQueElMontoTotalSeaCalculadoCorrectamente() {
+//        int cantidad = Integer.parseInt(wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.cantidadPopup)).getText());
+//        precioUnidad = Double.parseDouble(wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.precioUnidadPopup)).getText().replace("S/ ","").replace(",", ".").trim());
+
+//        System.out.println(cantidad);
+//        System.out.println(precioUnidad);
+//        Assertions.assertEquals(cantidad*precioUnidad,
+//                Double.parseDouble(wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.precioTotalPopup)).getText().replace("S/ ", "").trim())
+//        );
         System.out.println(">> VALIDAMOS MONTO TOTAL");
     }
 
     public void finalizoLaCompra() {
+        wait.until(ExpectedConditions.elementToBeClickable(MyStorePage.btnFinalizarPopup)).click();
+
+
         System.out.println(">> FINALIZAMOS COMPRA");
     }
 
     public void validoElTituloDeLaPaginaDelCarrito() {
+        Assertions.assertTrue(
+                wait.until(ExpectedConditions.urlContains("carrito")),
+                "Validacion correcta"
+        );
         System.out.println(">> VALIDAMOS QUE ESTAMOS EN EL CARRITO");
     }
 
     public void vuelvoAValidarElCalculoDePreciosEnElCarrito() {
+
         System.out.println(">> VALIDAMOS EL CALCULO DE PRECIOS EN EL CARRITO");
     }
 }

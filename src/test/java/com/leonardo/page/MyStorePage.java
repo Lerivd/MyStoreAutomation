@@ -20,15 +20,15 @@ public class MyStorePage {
     public static By btnAgregarAlCarrito = By.cssSelector("#add-to-cart-or-refresh > div.product-add-to-cart.js-product-add-to-cart > div > div.add > button");
 
     // Localizadores en el popup
-    public static By msgConfirmacion = By.xpath("//*[@id='myModalLabel']/text()");
+    public static By msgConfirmacion = By.id("myModalLabel");
     public static By cantidadPopup = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[1]/div/div[2]/span[3]/strong");
-    public static By subtotal = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[2]/div/p[2]/span[2]");
-    public static By precioTotal = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[2]/div/p[4]/span[2]");
+    public static By precioUnidadPopup = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[1]/div/div[2]/p");
+    public static By precioTotalPopup = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[2]/div/p[4]/span[2]");
     public static By btnFinalizarPopup = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[2]/div/div/a");
 
     // Localizadores en la pagina del carrito
     public static By tituloCarrito = By.xpath("/html/head/title");
-    public static By nombreProducto = By.xpath("//*[@id='main']/div/div[1]/div/div[2]/ul/li/div/div[2]/div[1]/a");
+    public static By nombreProducto = By.xpath("//*[@id='blockcart-modal']/div/div/div[2]/div/div[1]/div/div[2]/h6");
     public static By cantidadCarrito = By.xpath("//*[@id='main']/div/div[1]/div/div[2]/ul/li/div/div[3]/div/div[2]/div/div[1]/div/input");
     public static By precioUnidad = By.xpath("//*[@id='main']/div/div[1]/div/div[2]/ul/li/div/div[2]/div[2]/div[2]/span");
     public static By precioTotalCarrito = By.id("//*[@id='main']/div/div[2]/div[1]/div[1]/div[2]/div[2]/span[2]");
