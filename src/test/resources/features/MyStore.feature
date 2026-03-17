@@ -6,7 +6,7 @@ Feature: Product - Store
     And me logueo con mi usuario "<usuario>" y clave "<clave>"
     When navego a la categoria "<categoria>" y subcategoria "<subcategoria>"
     And agrego <cantidad> unidades del primer producto al carrito
-    Then valido en el popup la confirmación del producto agregado
+    Then valido en el popup la confirmacion del producto agregado
     And valido en el popup que el monto total sea calculado correctamente
     When finalizo la compra
     Then valido el titulo de la pagina del carrito
