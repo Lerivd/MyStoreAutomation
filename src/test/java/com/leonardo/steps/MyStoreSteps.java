@@ -45,6 +45,13 @@ public class MyStoreSteps {
     }
 
     public void navegoALaCategoriaYSubcategoria(String categoria, String subcategoria) {
+        wait.until(ExpectedConditions.elementToBeClickable(MyStorePage.menuCategoria)).click();
+        wait.until(ExpectedConditions.urlContains("3-clothes"));
+        wait.until(ExpectedConditions.elementToBeClickable(MyStorePage.menuSubCategoria)).click();
+        wait.until(ExpectedConditions.urlContains("4-men"));
+        esperaImplicita();
+        screenShot();
+
         System.out.println(">> NAVEGACION POR CATEGORIA " + categoria + " Y SUBCATEGORIA " + subcategoria);
     }
 

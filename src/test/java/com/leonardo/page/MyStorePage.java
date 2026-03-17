@@ -14,7 +14,7 @@ public class MyStorePage {
 
     // Localizadores de navegacion por categoria y subcategoria
     public static By menuCategoria = By.xpath("//*[@id='category-3']/a");
-    public static By menuSubCategoria = By.xpath("//*[@id='category-4']/a");
+    public static By menuSubCategoria = By.xpath("//*[@id='left-column']/div[1]/ul/li[2]/ul/li[1]/a");
     public static By enlaceproducto = By.xpath("//*[@id='js-product-list']/div[1]/div/article/div/div[2]/h2/a");
     public static By cantidad = By.xpath("<button class='btn btn-touchspin js-touchspin bootstrap-touchspin-up' type='button'><i class='material-icons touchspin-up'></i></button>");
     public static By btnAgregarAlCarrito = By.cssSelector("#add-to-cart-or-refresh > div.product-add-to-cart.js-product-add-to-cart > div > div.add > button");
