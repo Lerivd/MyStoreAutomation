@@ -33,6 +33,7 @@ public class MyStoreSteps {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.txtUsuaario)).sendKeys(usuario);
         wait.until(ExpectedConditions.visibilityOfElementLocated(MyStorePage.txtPass)).sendKeys(clave);
+        wait.until(ExpectedConditions.elementToBeClickable(MyStorePage.btnIniciarSesion)).click();
 
         // Validamos si el nombre de usuario aparece en la cabecera:
 //        Assertions.assertEquals(
@@ -67,6 +68,7 @@ public class MyStoreSteps {
     }
 
     public void validoEnElPopupLaConfirmacionDelProductoAgregado() {
+
         System.out.println(">> VALIDAMOS EL DETALLE");
     }
 
